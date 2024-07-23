@@ -28,7 +28,6 @@ document.addEventListener('DOMContentLoaded', function() {
     scriptButton.addEventListener('click', function() {
         const scriptText = 'loadstring(game:HttpGet("https://raw.githubusercontent.com/VapeVoidware/vapevoidware/main/NewMainScript.lua", true))()';
         copyToClipboard(scriptText);
-        showNotification();
     });
 
     function copyToClipboard(text) {
@@ -38,6 +37,9 @@ document.addEventListener('DOMContentLoaded', function() {
         textarea.select();
         document.execCommand('copy');
         document.body.removeChild(textarea);
+
+        // Show notification when the script is copied
+        showNotification();
     }
 
     function showNotification() {
