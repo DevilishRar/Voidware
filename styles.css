@@ -114,3 +114,29 @@ a.smooth-scroll:hover {
     background-color: #e60000;
     transition: background-color 0.3s;
 }
+
+#notification.show {
+    animation: slideIn 0.5s forwards, slideOut 0.5s 2.5s forwards;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideOut {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+}
