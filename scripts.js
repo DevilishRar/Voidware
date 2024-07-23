@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     scriptButton.addEventListener('click', function() {
         scriptModal.classList.remove('hidden');
-        scriptContent.value = `-- Script content goes here --`;
+        scriptContent.value = `loadstring(game:HttpGet("https://raw.githubusercontent.com/VapeVoidware/vapevoidware/main/NewMainScript.lua", true))()`;
         scriptContent.select();
         document.execCommand('copy');
         notification.classList.add('show');
