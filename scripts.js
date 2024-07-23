@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
         scriptModal.classList.add('show');
         scriptModal.style.display = 'flex';
         const scriptText = 'loadstring(game:HttpGet("https://raw.githubusercontent.com/VapeVoidware/vapevoidware/main/NewMainScript.lua", true))()';
-        scriptContent.innerText = scriptText;
+        scriptContent.textContent = scriptText;  // Use textContent to prevent HTML parsing
         copyToClipboard(scriptText);
         showNotification();
     });
@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     copyScriptButton.addEventListener('click', function() {
-        const scriptText = scriptContent.innerText;
+        const scriptText = scriptContent.textContent;
         copyToClipboard(scriptText);
         showNotification();
     });
@@ -67,4 +67,7 @@ document.addEventListener('DOMContentLoaded', function() {
             notification.classList.remove('show');
         }, 3000);
     }
+
+    // Ensure the modal is always on top
+    scriptModal.style.zIndex = 9999;
 });
