@@ -20,34 +20,13 @@ document.addEventListener('DOMContentLoaded', function() {
         star.style.setProperty('transform', `translate(var(--x), var(--y))`);
     });
 
-    // Script modal functionality
+    // Script copy functionality
     const scriptButton = document.getElementById('script-button');
-    const scriptModal = document.getElementById('script-modal');
-    const closeModalButton = document.getElementById('close-modal');
-    const copyScriptButton = document.getElementById('copy-script');
-    const scriptContent = document.getElementById('script-content');
     const notification = document.getElementById('notification');
+    const progressBar = document.getElementById('progress-bar');
 
     scriptButton.addEventListener('click', function() {
-        scriptModal.classList.remove('hide');
-        scriptModal.classList.add('show');
-        scriptModal.style.display = 'flex';
         const scriptText = 'loadstring(game:HttpGet("https://raw.githubusercontent.com/VapeVoidware/vapevoidware/main/NewMainScript.lua", true))()';
-        scriptContent.textContent = scriptText;  // Use textContent to prevent HTML parsing
-        copyToClipboard(scriptText);
-        showNotification();
-    });
-
-    closeModalButton.addEventListener('click', function() {
-        scriptModal.classList.remove('show');
-        scriptModal.classList.add('hide');
-        setTimeout(() => {
-            scriptModal.style.display = 'none';
-        }, 500);
-    });
-
-    copyScriptButton.addEventListener('click', function() {
-        const scriptText = scriptContent.textContent;
         copyToClipboard(scriptText);
         showNotification();
     });
@@ -62,12 +41,13 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function showNotification() {
+        notification.classList.remove('hide');
         notification.classList.add('show');
+        progressBar.style.width = '100%';
+
         setTimeout(() => {
             notification.classList.remove('show');
+            notification.classList.add('hide');
         }, 3000);
     }
-
-    // Ensure the modal is always on top
-    scriptModal.style.zIndex = 9999;
 });
