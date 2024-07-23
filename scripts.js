@@ -12,7 +12,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Make stars move around the website
     const stars = document.querySelectorAll('.star');
     stars.forEach(star => {
         star.style.setProperty('--x', Math.random() * 100 + 'vw');
@@ -20,7 +19,6 @@ document.addEventListener('DOMContentLoaded', function() {
         star.style.setProperty('transform', `translate(var(--x), var(--y))`);
     });
 
-    // Load-in animation for all content
     const contentElements = document.querySelectorAll('.content');
     contentElements.forEach(element => {
         element.classList.add('scroll-animation');
