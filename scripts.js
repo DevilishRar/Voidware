@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
+    // Make stars move around the website
     const stars = document.querySelectorAll('.star');
     stars.forEach(star => {
         star.style.setProperty('--x', Math.random() * 100 + 'vw');
@@ -19,6 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
         star.style.setProperty('transform', `translate(var(--x), var(--y))`);
     });
 
+    // Script modal functionality
     const scriptButton = document.getElementById('script-button');
     const scriptModal = document.getElementById('script-modal');
     const closeModalButton = document.getElementById('close-modal');
@@ -27,26 +29,42 @@ document.addEventListener('DOMContentLoaded', function() {
     const notification = document.getElementById('notification');
 
     scriptButton.addEventListener('click', function() {
-        scriptModal.classList.remove('hidden');
-        scriptContent.value = `loadstring(game:HttpGet("https://raw.githubusercontent.com/VapeVoidware/vapevoidware/main/NewMainScript.lua", true))()`;
-        scriptContent.select();
-        document.execCommand('copy');
-        notification.classList.add('show');
-        setTimeout(() => {
-            notification.classList.remove('show');
-        }, 3000);
+        scriptModal.classList.remove('hide');
+        scriptModal.classList.add('show');
+        scriptModal.style.display = 'flex';
+        const scriptText = 'loadstring(game:HttpGet("https://raw.githubusercontent.com/VapeVoidware/vapevoidware/main/NewMainScript.lua", true))()';
+        scriptContent.innerText = scriptText;
+        copyToClipboard(scriptText);
+        showNotification();
     });
 
     closeModalButton.addEventListener('click', function() {
-        scriptModal.classList.add('hidden');
+        scriptModal.classList.remove('show');
+        scriptModal.classList.add('hide');
+        setTimeout(() => {
+            scriptModal.style.display = 'none';
+        }, 500);
     });
 
     copyScriptButton.addEventListener('click', function() {
-        scriptContent.select();
+        const scriptText = scriptContent.innerText;
+        copyToClipboard(scriptText);
+        showNotification();
+    });
+
+    function copyToClipboard(text) {
+        const textarea = document.createElement('textarea');
+        textarea.value = text;
+        document.body.appendChild(textarea);
+        textarea.select();
         document.execCommand('copy');
+        document.body.removeChild(textarea);
+    }
+
+    function showNotification() {
         notification.classList.add('show');
         setTimeout(() => {
             notification.classList.remove('show');
         }, 3000);
-    });
+    }
 });
