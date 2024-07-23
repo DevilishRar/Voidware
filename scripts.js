@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
+    // Make stars move around the website
     const stars = document.querySelectorAll('.star');
     stars.forEach(star => {
         star.style.setProperty('--x', Math.random() * 100 + 'vw');
@@ -19,8 +20,35 @@ document.addEventListener('DOMContentLoaded', function() {
         star.style.setProperty('transform', `translate(var(--x), var(--y))`);
     });
 
-    const contentElements = document.querySelectorAll('.content');
-    contentElements.forEach(element => {
-        element.classList.add('scroll-animation');
+    // Script modal functionality
+    const scriptButton = document.getElementById('script-button');
+    const scriptModal = document.getElementById('script-modal');
+    const closeModalButton = document.getElementById('close-modal');
+    const copyScriptButton = document.getElementById('copy-script');
+    const scriptContent = document.getElementById('script-content');
+    const notification = document.getElementById('notification');
+
+    scriptButton.addEventListener('click', function() {
+        scriptModal.classList.remove('hidden');
+        scriptContent.value = `-- Script content goes here --`;
+        scriptContent.select();
+        document.execCommand('copy');
+        notification.classList.add('show');
+        setTimeout(() => {
+            notification.classList.remove('show');
+        }, 3000);
+    });
+
+    closeModalButton.addEventListener('click', function() {
+        scriptModal.classList.add('hidden');
+    });
+
+    copyScriptButton.addEventListener('click', function() {
+        scriptContent.select();
+        document.execCommand('copy');
+        notification.classList.add('show');
+        setTimeout(() => {
+            notification.classList.remove('show');
+        }, 3000);
     });
 });
