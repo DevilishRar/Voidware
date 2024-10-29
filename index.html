@@ -119,7 +119,7 @@
                     <div class="glassmorphism p-8 rounded-lg">
                         <i class="fas fa-user-alt text-6xl text-red-500 mb-4"></i>
                         <h3 class="text-2xl font-bold text-red-500 mb-2">Voidware User Count</h3>
-                        <p class="text-red-200">We have more than <b>{}</b> voidware users!/p>
+                        <p class="text-red-200">We have more than <b id="user-count">...</b> voidware users!/p>
                     </div>
                     <div class="glassmorphism p-8 rounded-lg">
                         <i class="fa-brands fa-discord text-6xl text-red-500 mb-4"></i>
@@ -175,6 +175,18 @@
     </div>
 
     <script src="scripts.js"></script>
+    <script>
+        fetch('https://api.vapevoidware.xyz/voidware_count')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('user-count').textContent = data.count;
+            })
+            .catch(error => {
+                console.error('Error fetching user count:', error);
+                document.getElementById('user-count').textContent = 'unavailable';
+            });
+    </script>
+    
 </body>
 
 </html>
