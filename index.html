@@ -186,9 +186,9 @@
             .then(response => response.json())
             .then(data => {
                 document.getElementById('user-count').textContent = data.count;
-                document.getElementById('executor1').textContent = `${data.top_executors[0].executor} (${data.top_executors[0].count})`;
-                document.getElementById('executor2').textContent = `${data.top_executors[1].executor} (${data.top_executors[1].count})`;
-                document.getElementById('executor3').textContent = `${data.top_executors[2].executor} (${data.top_executors[2].count})`;
+                document.getElementById('executor1').textContent = `${data.top_executors[0].executor}`;
+                document.getElementById('executor2').textContent = `${data.top_executors[1].executor}`;
+                document.getElementById('executor3').textContent = `${data.top_executors[2].executor}`;
             })
             .catch(error => {
                 console.error('Error fetching user count:', error);
