@@ -12,7 +12,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Make stars move around the website
     const stars = document.querySelectorAll('.star');
     stars.forEach(star => {
         star.style.setProperty('--x', Math.random() * 100 + 'vw');
@@ -20,7 +19,6 @@ document.addEventListener('DOMContentLoaded', function() {
         star.style.setProperty('transform', `translate(var(--x), var(--y))`);
     });
 
-    // Script copy functionality
     const scriptButton = document.getElementById('script-button');
     const notification = document.getElementById('notification');
     const progressBar = document.getElementById('progress-bar');
@@ -37,8 +35,6 @@ document.addEventListener('DOMContentLoaded', function() {
         textarea.select();
         document.execCommand('copy');
         document.body.removeChild(textarea);
-
-        // Show notification when the script is copied
         showNotification();
     }
 
@@ -46,7 +42,6 @@ document.addEventListener('DOMContentLoaded', function() {
         notification.classList.remove('hide');
         notification.classList.add('show');
         progressBar.style.width = '100%';
-
         setTimeout(() => {
             notification.classList.remove('show');
             notification.classList.add('hide');
